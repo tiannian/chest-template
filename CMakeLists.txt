@@ -1,14 +1,16 @@
 project(template)
 
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.1)
 
-aux_source_directory(src SRC_LISTS)
+set(CMAKE_EXPORT_COMPILE_COMMANDS YES)
+
+file(GLOB_RECURSE CPP_SRC_LISTS src/*.cpp)
 
 include_directories(src)
 
-if(SRC_LISTS)
+if(CPP_SRC_LISTS)
     # Compile srcs to static library
-    add_library(${PROJECT_NAME} STATIC ${SRC_LISTS})
+    add_library(${PROJECT_NAME} STATIC ${CPP_SRC_LISTS})
 endif()
 
 if(EXISTS ${CMAKE_SOURCE_DIR}/main.cpp)
